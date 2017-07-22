@@ -75,15 +75,13 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences numList = getSharedPreferences("list",MODE_PRIVATE);
         int siteNum = numList.getInt("num",1);
         int index;
-        for (index = 1 ; index == siteNum ; index++ );{
+        for (index = 1 ; index <= siteNum ; index++ );{
             String indexStr = index + "";
             SharedPreferences siteInfo = getSharedPreferences(indexStr, MODE_PRIVATE);
             String siteDomain = siteInfo.getString("domain","noDomain");
 
             Site site1 = new Site(siteDomain);
             siteList.add(site1);
-            //Site site2 = new Site(testNum);
-            //siteList.add(site2);
         }
     }
 
