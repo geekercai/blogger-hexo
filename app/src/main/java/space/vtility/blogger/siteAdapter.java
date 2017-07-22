@@ -35,11 +35,11 @@ public class siteAdapter extends RecyclerView.Adapter<space.vtility.blogger.site
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_text, parent, false);
         final ViewHolder holder = new ViewHolder(view);
-        holder.SiteView.setOnClickListener(new View.OnClickListener() {
+        /*holder.SiteView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                Site fruit = mSiteList.get(position);
+                //Site fruit = mSiteList.get(position);
                 //Toast.makeText(v.getContext(), "you clicked view " + fruit.getName(), Toast.LENGTH_SHORT).show();
             }
         });
