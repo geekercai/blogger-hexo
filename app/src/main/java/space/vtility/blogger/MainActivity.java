@@ -22,12 +22,10 @@ import android.view.ViewGroup;
 import java.util.List;
 import java.util.ArrayList;
 
-//import static space.vtility.blogger.R.id.fab;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private List<list1> testList = new ArrayList<>();
-    //String[] test  = {"1","2","3"};
+    private List<Site> siteList = new ArrayList<Site>();
 
     //@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,33 +33,13 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        show();
-
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        listAdapter Adapter = new listAdapter(testList);
-
-        /*RecyclerView.Adapter mAdapter = new RecyclerView.Adapter() {
-            @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                return null;
-            }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
-            }
-
-            @Override
-            public int getItemCount() {
-                return 0;
-            }
-        };*/
-        mRecyclerView.setAdapter(Adapter);
+        // RecycleView Starts
+        //initSites();
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        siteAdapter adapter = new siteAdapter(siteList);
+        recyclerView.setAdapter(adapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -84,11 +62,11 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void show() {
-        list1 test1 = new list1("1");
-        testList.add(test1);
-
+    private void initSites() {
+        Site site1 = new Site("1");
+        siteList.add(site1);
     }
+
 
     @Override
     public void onBackPressed() {
