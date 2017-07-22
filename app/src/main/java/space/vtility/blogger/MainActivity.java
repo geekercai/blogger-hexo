@@ -2,6 +2,7 @@ package space.vtility.blogger;
 
 //import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 //import android.support.design.widget.Snackbar;
@@ -26,6 +27,9 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private List<Site> siteList = new ArrayList<Site>();
+    String[] listArray;
+    //String testNum;
+
 
     //@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //
+        //int siteNum = numList.getInt("num",1);
+        //testNum = siteNum + "";
+
         // RecycleView Starts
         initSites();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -62,9 +70,21 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
     private void initSites() {
-        Site site1 = new Site("1");
-        siteList.add(site1);
+        SharedPreferences numList = getSharedPreferences("list",MODE_PRIVATE);
+        int siteNum = numList.getInt("num",1);
+        int index;
+        for (index = 1 ; index == siteNum ; index++ );{
+            String indexStr = index + "";
+            SharedPreferences siteInfo = getSharedPreferences(indexStr, MODE_PRIVATE);
+            String siteDomain = siteInfo.getString("domain","noDomain");
+
+            Site site1 = new Site(siteDomain);
+            siteList.add(site1);
+            //Site site2 = new Site(testNum);
+            //siteList.add(site2);
+        }
     }
 
 

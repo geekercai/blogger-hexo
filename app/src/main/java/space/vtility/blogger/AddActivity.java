@@ -32,13 +32,14 @@ public class AddActivity extends AppCompatActivity {
                switch (view.getId()){
                    case R.id.fab:
                        String inputText = editText.getText().toString();
-                       String name = name2.getText().toString();
-                       SharedPreferences.Editor editor = getSharedPreferences(name,MODE_PRIVATE).edit();
-                       editor.putString("domain",inputText);
-                       editor.apply();
+                       String name;
                        SharedPreferences numList = getSharedPreferences("list",MODE_PRIVATE);
                        int num = numList.getInt("num",MODE_PRIVATE);
                        num ++;
+                       name = num + "";
+                       SharedPreferences.Editor editor = getSharedPreferences(name,MODE_PRIVATE).edit();
+                       editor.putString("domain",inputText);
+                       editor.apply();
                        SharedPreferences.Editor numEdit = getSharedPreferences("list",MODE_PRIVATE).edit();
                        numEdit.putInt("num",num);
                        numEdit.apply();
