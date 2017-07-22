@@ -78,9 +78,9 @@ public class MainActivity extends AppCompatActivity
         for (index = 1 ; index <= siteNum ; index++ );{
             String indexStr = index + "";
             SharedPreferences siteInfo = getSharedPreferences(indexStr, MODE_PRIVATE);
-            String siteDomain = siteInfo.getString("domain","noDomain");
+            listArray [index] = siteInfo.getString("domain","noDomain");
 
-            Site site1 = new Site(siteDomain);
+            Site site1 = new Site(listArray[index]);
             siteList.add(site1);
         }
     }

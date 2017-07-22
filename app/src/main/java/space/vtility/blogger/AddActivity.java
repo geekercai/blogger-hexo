@@ -34,7 +34,7 @@ public class AddActivity extends AppCompatActivity {
                        String inputText = editText.getText().toString();
                        String name;
                        SharedPreferences numList = getSharedPreferences("list",MODE_PRIVATE);
-                       int num = numList.getInt("num",MODE_PRIVATE);
+                       int num = numList.getInt("num",0);
                        num ++;
                        name = num + "";
                        SharedPreferences.Editor editor = getSharedPreferences(name,MODE_PRIVATE).edit();
