@@ -31,16 +31,13 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //
-        //int siteNum = numList.getInt("num",1);
-        //testNum = siteNum + "";
 
         // RecycleView Starts
         initSites();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        siteAdapter adapter = new siteAdapter(siteList);
+        siteAdapter adapter = new siteAdapter(this,siteList);
         recyclerView.setAdapter(adapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -73,7 +70,7 @@ public class MainActivity extends AppCompatActivity
         for (index = 1 ; index <= siteNum ; index++ ){
             String indexStr = index + "";
             SharedPreferences siteInfo = getSharedPreferences(indexStr, MODE_PRIVATE);
-            listArray [index] = siteInfo.getString("domain","noDomain");//null
+            listArray [index] = siteInfo.getString("domain","noDomain");
 
             Site site1 = new Site(listArray[index]);
             siteList.add(site1);

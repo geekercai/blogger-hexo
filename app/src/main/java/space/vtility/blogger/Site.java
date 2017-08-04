@@ -1,8 +1,13 @@
 package space.vtility.blogger;
 
-public class Site {
+import android.content.Context;
+import android.content.SharedPreferences;
 
-    private String name;
+import static android.content.Context.MODE_PRIVATE;
+
+public class Site{
+
+    String name;
 
 
     public Site(String name) {
@@ -12,6 +17,10 @@ public class Site {
     public String getName() {
         return name;
     }
+
+   /* public void getPref(){
+        SharedPreferences.Editor editor = getSharedPreferences("swap",MODE_PRIVATE).edit();
+    }*/
 
 
 }

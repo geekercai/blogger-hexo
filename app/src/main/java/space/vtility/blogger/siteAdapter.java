@@ -1,7 +1,9 @@
 package space.vtility.blogger;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +12,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import static android.app.PendingIntent.getActivity;
-import static android.support.v4.content.ContextCompat.startActivity;
+import static android.content.Context.MODE_PRIVATE;
 
 public class siteAdapter extends RecyclerView.Adapter<space.vtility.blogger.siteAdapter.ViewHolder>{
 
     private List<Site> mSiteList;
+    private Activity mActivity;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View SiteView;
@@ -28,8 +30,9 @@ public class siteAdapter extends RecyclerView.Adapter<space.vtility.blogger.site
         }
     }
 
-    public siteAdapter(List<Site> siteList) {
+    public siteAdapter(Activity activity,List<Site> siteList) {
         mSiteList = siteList;
+        mActivity = activity;
     }
 
     @Override
@@ -41,19 +44,31 @@ public class siteAdapter extends RecyclerView.Adapter<space.vtility.blogger.site
             @Override
             public void onClick(View v){
                 int position = holder.getAdapterPosition();
-                Site site = mSiteList.get(position);
-                String siteDomain = site.getName();
-                Intent intent = new Intent(MainActivity.this, siteListActivity.class);
-                startActivity(intent);
+
+                Site msite = mSiteList.get(position);
+
+                String mSiteDomain = msite.getName();
+
+                SharedPreferences.Editor editor = mActivity.getSharedPreferences("swap",MODE_PRIVATE).edit();
+                editor.putString("swap",mSiteDomain);
+                editor.apply();
+
+                Intent intent = new Intent(mActivity, siteListActivity.class);
+
+                mActivity.startActivity(intent);
+
             }
+
+
+
         });
         return holder;
     }
-
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Site site = mSiteList.get(position);
         holder.SiteName.setText(site.getName());
+
     }
 
     @Override
